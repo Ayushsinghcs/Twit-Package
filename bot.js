@@ -22,7 +22,6 @@ function followed(eventMsg){
   T.post('friendships/create', { screen_name: screenName}, function(err, data, response)
     {
       tweetIt('@' + screenName+ ' Thanks for following me, see i followed you back');
-      stream.stop();
 
       console.log("you are following the user");
     });
@@ -46,6 +45,8 @@ var tweet = {
   status:txt
 }
 T.post('statuses/update', tweet, function(err, data, response) {
+  stream.stop();
+
   console.log(data);
 });
 
