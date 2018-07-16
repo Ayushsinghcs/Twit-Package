@@ -5,6 +5,7 @@ var T = new Twit(config);
 var stream = T.stream('user');
 // stream.on('tweet',tweetEvent);
 stream.on('follow',followed);
+stream.on('unfollow',unfollowed)
 // stream.on('followback',follow);
 
 // function followback(){
@@ -23,6 +24,22 @@ function followed(eventMsg){
     {
 
       tweetIt('@' + screenName+ ' Thanks for following me, see i followed you back');
+      // stream.stop();
+
+      console.log("you are following the user");
+    });
+}
+
+function followed(eventMsg){
+  var name= eventMsg.source.name;
+  var screenName = eventMsg.source.screen_name;
+  var id =eventMsg.source.id;
+  var replyto = eventMsg.in_reply_to_screen_name;
+
+  T.post('friendships/destroy', { screen_name: screenName}, function(err, data, response)
+    {
+
+      tweetIt('@' + screenName+ ' I am gonna unfollow you too');
       // stream.stop();
 
       console.log("you are following the user");
