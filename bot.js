@@ -22,10 +22,11 @@ function followed(eventMsg){
   T.post('friendships/create', { screen_name: screenName}, function(err, data, response)
     {
       tweetIt('@' + screenName+ ' Thanks for following me, see i followed you back');
+      stream.stop();
+
       console.log("you are following the user");
     });
 }
-stream.stop();
 // function tweetEvent(eventMsg){
 //   //var replyto =  eventMsg.source.screen_name;
 //  var replyto = eventMsg.in_reply_to_screen_name;
