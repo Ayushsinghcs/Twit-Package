@@ -30,7 +30,7 @@ function followed(eventMsg){
     });
 }
 
-function followed(eventMsg){
+function unfollowed(eventMsg){
   var name= eventMsg.source.name;
   var screenName = eventMsg.source.screen_name;
   var id =eventMsg.source.id;
