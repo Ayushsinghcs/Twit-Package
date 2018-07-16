@@ -23,6 +23,7 @@ function followed(eventMsg){
     {
 
       console.log("you are following the user");
+      break;
     });
 }
 
@@ -35,7 +36,7 @@ var replyto = eventMsg.in_reply_to_screen_name;
 var newTweet = '@' + from + ' thank you for tweeting me';
 tweetIt(newTweet);
 console.log("you are following the user");
-
+break;
   }
 }
 
@@ -46,6 +47,7 @@ var tweet = {
 }
 T.post('statuses/update', tweet, function(err, data, response) {
   console.log(data);
+  break;
 });
 
 }
