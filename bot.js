@@ -23,7 +23,7 @@ function followed(eventMsg){
     {
 
       tweetIt('@' + screenName+ ' Thanks for following me, see i followed you back');
-      stream.stop();
+      // stream.stop();
 
       console.log("you are following the user");
     });
