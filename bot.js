@@ -17,36 +17,37 @@ function followed(eventMsg){
   var name= eventMsg.source.name;
   var screenName = eventMsg.source.screen_name;
   var id =eventMsg.source.id;
+  var replyto = eventMsg.in_reply_to_screen_name;
+
   T.post('friendships/create', { screen_name: screenName}, function(err, data, response)
     {
-      var tweet = {
-        status:'@' + screenName+ ' Thanks for following me'
-      }
-      T.post('statuses/update', tweet, function(err, data, response) {
-        console.log(data);
-      });
+      if(screenName!=replyto)
+      tweetIt('@' + screenName+ ' Thanks for following me');
+
       console.log("you are following the user");
     });
 }
 
 function tweetEvent(eventMsg){
-var replyto = eventMsg.in_reply_to_screen_name;
+  //var replyto =  eventMsg.source.screen_name;
+ var replyto = eventMsg.in_reply_to_screen_name;
   var text =eventMsg.text;
   var from = eventMsg.user.screen_name;
 
   if(replyto==='ayush____singh'){
 var newTweet = '@' + from + ' thank you for tweeting me';
-// tweetIt(newTweet);
-
-T.post('statuses/update', newTweet, function(err, data, response) {
-  console.log(data);
-});
-console.log("you are following the user");
+tweetIt(newTweet);
 
   }
 }
 
+function tweetIt(txt){
 
-
+var tweet = {
+  status:txt
+}
+T.post('statuses/update', tweet, function(err, data, response) {
+  console.log(data);
+});
 
 }
