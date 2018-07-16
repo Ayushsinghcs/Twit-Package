@@ -17,9 +17,10 @@ function followed(eventMsg){
   var name= eventMsg.source.name;
   var screenName = eventMsg.source.screen_name;
   var id =eventMsg.source.id;
+  tweetIt('@' + screenName+ ' Thanks for following me');
+
   T.post('friendships/create', { screen_name: screenName}, function(err, data, response)
     {
-      tweetIt('@' + screenName+ ' Thanks for following me');
 
       console.log("you are following the user");
     });
