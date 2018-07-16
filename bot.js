@@ -19,8 +19,12 @@ function followed(eventMsg){
   var id =eventMsg.source.id;
   T.post('friendships/create', { screen_name: screenName}, function(err, data, response)
     {
-      tweetIt('@' + screenName+ ' Thanks for following me');
-
+      var tweet = {
+        status:'@' + screenName+ ' Thanks for following me'
+      }
+      T.post('statuses/update', tweet, function(err, data, response) {
+        console.log(data);
+      });
       console.log("you are following the user");
     });
 }
@@ -32,19 +36,17 @@ var replyto = eventMsg.in_reply_to_screen_name;
 
   if(replyto==='ayush____singh'){
 var newTweet = '@' + from + ' thank you for tweeting me';
-tweetIt(newTweet);
+// tweetIt(newTweet);
+
+T.post('statuses/update', newTweet, function(err, data, response) {
+  console.log(data);
+});
 console.log("you are following the user");
 
   }
 }
 
-function tweetIt(txt){
 
-var tweet = {
-  status:txt
-}
-T.post('statuses/update', tweet, function(err, data, response) {
-  console.log(data);
-});
+
 
 }
